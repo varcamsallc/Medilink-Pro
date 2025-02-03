@@ -1,0 +1,42 @@
+// frontend/src/App.js
+
+import React from "react";
+import RecetaForm from "./components/RecetaForm";
+
+function App() {
+  return (
+    <div>
+      <h1>Medilink Pro</h1>
+      <RecetaForm />
+    </div>
+  );
+}
+
+export default App;
+
+// frontend/src/services/recetaService.js
+
+import axios from "axios";
+
+const API_URL = "http://localhost:5000/api/recetas";
+
+export const crearReceta = async (recetaData) => {
+  try {
+    const response = await axios.post(API_URL, recetaData);
+    console.log("Receta creada", response.data);
+  } catch (error) {
+    console.error("Error creando receta", error);
+  }
+};
+
+export const obtenerRecetas = async () => {
+  try {
+    const response = await axios.get(API_URL);
+    return response.data;
+  } catch (error) {
+    console.error("Error obteniendo recetas", error);
+  }
+};
+
+
+
